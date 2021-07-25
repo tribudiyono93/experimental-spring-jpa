@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.dto.PageDTO;
 import com.example.jpa.entity.Address;
@@ -119,10 +118,7 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 		User user = userRepository.findById(1L).get();
 		System.out.println("User : " + user);
 		
-		user.setUserName("new username");
-		userRepository.save(user);
-		
-		Address address = addressRepository.findById(1L).get();
+		Address address = addressRepository.findById(user.getId()).get();
 		System.out.println("Address : " + address);
 	}
 
