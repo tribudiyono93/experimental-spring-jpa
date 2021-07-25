@@ -151,12 +151,15 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 		
 	}
 
+	//transactional annotation not work in CommandLineRunner interface,
+	//will work in service / controller level
 	@Transactional
 	private void getExistingData_ONE_TO_MANY() {
+		System.out.println("========================getExistingData_ONE_TO_MANY==================================");
 		Book existingBook = bookRepository.findById(1L).get();
 		
 		//using relation in entity. but this way dosnt work. i dont know why ?
-		existingBook.getPages();
+		//System.out.println("existing book pages : " + existingBook.getPages());
 		
 		//RECOMMENDED WAY
 		//select by book, it will produce query like SELECT * FROM Page where bookId = :bookId;
