@@ -1,16 +1,25 @@
 package com.example.jpa.entity;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -34,55 +43,10 @@ public class Page implements Serializable {
     @JsonIgnore
     private Book book;
     
-    public Page() {}
-    
-    public Long getId() {
-		return id;
-	}
-    
     public Long getBookId() {
     	return this.book.getId();
     }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getChapter() {
-		return chapter;
-	}
-
-	public void setChapter(String chapter) {
-		this.chapter = chapter;
-	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public Page(int number, String content, String chapter) {
         this.number = number;
@@ -96,9 +60,4 @@ public class Page implements Serializable {
         this.chapter = chapter;
         this.book = book;
     }
-
-	@Override
-	public String toString() {
-		return "Page [id=" + id + ", number=" + number + ", content=" + content + ", chapter=" + chapter + "]";
-	}
 }

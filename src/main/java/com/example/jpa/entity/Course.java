@@ -11,6 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "course")
 public class Course {
@@ -26,31 +35,7 @@ public class Course {
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private Set<CourseRating> ratings;
 	
-	public Course() {}
-	
 	public Course(String name) {
 		this.name = name;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Set<CourseRating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(Set<CourseRating> ratings) {
-		this.ratings = ratings;
-	}
-	
-	
 }
