@@ -30,7 +30,9 @@ public class BookService {
 	
 	@Transactional
 	public void saveDataOneToMany() {
-		log.info("================================start saveDataOneToMany==================================================");
+		System.out.println();
+		System.out.println();
+		log.info("===start saveDataOneToMany===");
 		Book book = new Book("Java 101", "John Doe", "123456");
         
         book.addPage(new Page(1, "Introduction contents", "Introduction", book));
@@ -40,12 +42,14 @@ public class BookService {
         // save the book
         // with CascadeType.ALL in Book entity. we can save book and page in one line
         bookRepository.save(book);
-        log.info("================================end saveDataOneToMany==================================================");
+        log.info("===end saveDataOneToMany===");
 	}
 	
 	@Transactional
 	public void getOneToMany() {
-		log.info("===========================================start getOneToMany===========================================================");
+		System.out.println();
+		System.out.println();
+		log.info("===start getOneToMany===");
 		Book existingBook = bookRepository.findById(1L).get();
 		
 		//RECOMMENDED WAY
@@ -59,12 +63,14 @@ public class BookService {
 		Set<Page> page3 = existingBook.getPages();
 		log.info("Pages : " + page3);
 		
-		log.info("===========================================end getOneToMany===========================================================");
+		log.info("===end getOneToMany===");
 	}
 	
 	@Transactional
 	public void getAndUpdateOneToMany() {
-		log.info("===========================================start getAndUpdateOneToMany===========================================================");
+		System.out.println();
+		System.out.println();
+		log.info("===start getAndUpdateOneToMany===");
 		Book existingBook = bookRepository.findById(1L).get();
 		
 		existingBook.setAuthor("change author name");
@@ -88,12 +94,17 @@ public class BookService {
 		//you can update both book and page using one line
 		bookRepository.save(existingBook);
 		
-		log.info("===========================================end getAndUpdateOneToMany===========================================================");
+		//or if you want only to update pages only. the query will run only for pages. but if you change the book, the book will updated too
+		//pageRepository.saveAll(page3);
+		
+		log.info("===end getAndUpdateOneToMany===");
 	}
 	
 	@Transactional
 	public void getManyToOne() {
-		log.info("========================================================start getManyToOne=========================================================================");
+		System.out.println();
+		System.out.println();
+		log.info("===start getManyToOne===");
 		Page page = pageRepository.findById(1L).get();
 		
 		//YOU CAN ACCESS COLUMN book_id using this way
@@ -105,12 +116,14 @@ public class BookService {
 		//OR ANOTHER RECOMMENDED WAY
 		Book book = page.getBook();
 		log.info("Book : " + book.toString());
-		log.info("==========================================================end getManyToOne=======================================================================");
+		log.info("===end getManyToOne===");
 	}
 	
 	@Transactional
 	public void getAndUpdateManyToOne() {
-		log.info("========================================================start getAndUpdateManyToOne=========================================================================");
+		System.out.println();
+		System.out.println();
+		log.info("===start getAndUpdateManyToOne===");
 		Page page = pageRepository.findById(1L).get();
 		page.setContent("updated the content");
 		
@@ -123,7 +136,7 @@ public class BookService {
 		//and if you are only update the page only, the book will not updated. very usefull.
 		pageRepository.save(page);
 		
-		log.info("==========================================================end getAndUpdateManyToOne=======================================================================");
+		log.info("===end getAndUpdateManyToOne===");
 	}
 	
 }

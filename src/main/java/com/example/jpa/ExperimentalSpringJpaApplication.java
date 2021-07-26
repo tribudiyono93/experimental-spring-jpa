@@ -29,6 +29,7 @@ import com.example.jpa.repository.PageRepository;
 import com.example.jpa.repository.StudentRepository;
 import com.example.jpa.repository.UserRepository;
 import com.example.jpa.service.BookService;
+import com.example.jpa.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -60,6 +61,9 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 	@Autowired
 	private BookService bookService;
 	
+	@Autowired
+	private UserService userService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ExperimentalSpringJpaApplication.class, args);
 	}
@@ -76,6 +80,12 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 		bookService.getManyToOne();
 		
 		bookService.getAndUpdateManyToOne();
+		
+		userService.saveOneToOne();
+		
+		userService.getOneToOne();
+		
+		userService.getAndUpdateOneToOne();
 		
 		/*
 		//PLAYING WITH ONE TO ONE WITH SHARED KEY

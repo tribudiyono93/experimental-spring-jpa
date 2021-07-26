@@ -17,7 +17,6 @@ public class UserController {
 	
 	@GetMapping
 	public ResponseEntity<?> testing() {
-		userService.getUser();
 		return ResponseEntity.ok().build();
 	}
 }

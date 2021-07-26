@@ -33,7 +33,7 @@ public class Address {
     @Column(name = "city")
     private String city;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "address")
     @MapsId
     @JoinColumn(name = "user_id")
     @JsonIgnore
