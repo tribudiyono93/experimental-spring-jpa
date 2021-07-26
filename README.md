@@ -8,3 +8,10 @@ Pustaka :
 1. https://vladmihalcea.com/the-best-way-to-map-a-projection-query-to-a-dto-with-jpa-and-hibernate/
 2. https://vladmihalcea.com/the-hibernate-enable_lazy_load_no_trans-anti-pattern/
 3. https://thorben-janssen.com/dto-projections/
+
+
+CURL :
+- save data one to many
+curl --location --request GET 'localhost:8080/book/save-one-to-many'
+
+- get data one to many

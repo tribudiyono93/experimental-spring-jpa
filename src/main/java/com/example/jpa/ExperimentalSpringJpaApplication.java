@@ -28,6 +28,7 @@ import com.example.jpa.repository.CourseRepository;
 import com.example.jpa.repository.PageRepository;
 import com.example.jpa.repository.StudentRepository;
 import com.example.jpa.repository.UserRepository;
+import com.example.jpa.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,6 +57,9 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 	@Autowired
 	private CourseRatingRepository courseRatingRepository;
 	
+	@Autowired
+	private BookService bookService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ExperimentalSpringJpaApplication.class, args);
 	}
@@ -63,13 +67,17 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		//PLAYING WITH ONE TO MANY
-		saveData_ONE_TO_MANY();
+		bookService.saveDataOneToMany();
 		
-		getExistingData_ONE_TO_MANY();
+		bookService.getOneToMany();
 		
-		getPage_MANY_TO_ONE();
+		bookService.getAndUpdateOneToMany();
 		
+		bookService.getManyToOne();
+		
+		bookService.getAndUpdateManyToOne();
+		
+		/*
 		//PLAYING WITH ONE TO ONE WITH SHARED KEY
 		saveData_ONE_TO_ONE();
 		
@@ -81,7 +89,7 @@ public class ExperimentalSpringJpaApplication implements CommandLineRunner {
 		saveData_MANY_TO_MANY();
 		
 		
-        
+        */
 	}
 
 	@Transactional

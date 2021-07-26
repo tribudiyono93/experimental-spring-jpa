@@ -3,22 +3,27 @@ package com.example.jpa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.jpa.repository.BookRepository;
+import com.example.jpa.service.BookService;
 
 @RestController
+@RequestMapping("book")
 public class BookController {
 	
 	@Autowired
-	private BookRepository bookRepository;
+	private BookService bookService;
 	
-	@GetMapping("/books")
-	public ResponseEntity<?> getAllBooks() {
-		
-		// bookRepository.findAll(); if using entity, even the pages is lazy loading, but when call in rest api
-		// the data for page, loaded to in response
-		
+	@GetMapping("/save-one-to-many")
+	public ResponseEntity<?> saveOneToMany() {
+		bookService.saveDataOneToMany();
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/get-one-to-many")
+	public ResponseEntity<?> getOneToMany() {
+		bookService.getOneToMany();
 		return ResponseEntity.ok().build();
 	}
 }
